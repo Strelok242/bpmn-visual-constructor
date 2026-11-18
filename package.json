@@ -1,0 +1,12 @@
+{
+  "name": "bpmn-visual-constructor",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Учебный визуально-графический конструктор BPMN 2.0",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "license": "MIT"
+}
