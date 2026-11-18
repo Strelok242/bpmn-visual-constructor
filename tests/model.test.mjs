@@ -1,0 +1,14 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {EMPTY,createNode,createFlow,createDemo,validateModel,getWaypoints} from '../src/model.js';
+import {exportBpmnXML} from '../src/bpmn-export.js';
+test('создаются все четыре типа элементов',()=>{for(const t of ['startEvent','task','exclusiveGateway','endEvent'])assert.equal(createNode(t,50,60).type,t)});
+test('входящие связи в стартовое событие запрещены',()=>{const m=EMPTY();m.nodes=[createNode('task',0,0),createNode('startEvent',100,0)];assert.throws(()=>createFlow(m.nodes[0].id,m.nodes[1].id,m),/Стартовое/)});
+test('исходящие связи от конечного события запрещены',()=>{const m=EMPTY();m.nodes=[createNode('endEvent',0,0),createNode('task',100,0)];assert.throws(()=>createFlow(m.nodes[0].id,m.nodes[1].id,m),/завершения/)});
+test('повторную связь нельзя создать',()=>{const m=createDemo();assert.throws(()=>createFlow('Start_1','Task_1',m),/существует/)});
+test('пример содержит 7 узлов и 6 потоков',()=>{const m=createDemo();assert.equal(m.nodes.length,7);assert.equal(m.flows.length,6);assert.deepEqual(validateModel(m).nodes,m.nodes)});
+test('импорт отклоняет ссылки на несуществующие узлы',()=>{const m=createDemo();m.flows[0].source='Ghost';assert.throws(()=>validateModel(m),/Некорректный/)});
+test('импорт отклоняет повторяющиеся ID',()=>{const m=createDemo();m.nodes[1].id=m.nodes[0].id;assert.throws(()=>validateModel(m),/Недопустимый/)});
+test('экспорт содержит нормативные пространства имен BPMN и BPMNDI',()=>{const xml=exportBpmnXML(createDemo());assert.match(xml,/http:\/\/www.omg.org\/spec\/BPMN\/20100524\/MODEL/);assert.match(xml,/<bpmndi:BPMNDiagram/);assert.equal((xml.match(/<bpmn:sequenceFlow /g)||[]).length,6);assert.equal((xml.match(/<bpmndi:BPMNShape /g)||[]).length,7)});
+test('названия безопасно экранируются для XML',()=>{const m=createDemo();m.title='А & Б <В>';assert.match(exportBpmnXML(m),/А &amp; Б &lt;В&gt;/)});
+test('точки связи вычисляются на границе фигур',()=>{const m=createDemo();const [a,b]=getWaypoints(m.nodes[0],m.nodes[1]);assert.equal(a.x,128);assert.equal(b.x,224)});
