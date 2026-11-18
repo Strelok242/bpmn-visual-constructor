@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FlowCraft | BPMN-конструктор</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<div class="app">
+<header class="topbar">
+  <div class="identity"><span class="mark">◇</span><div><strong>FlowCraft</strong><small>BPMN Studio · Учебный проект</small></div></div>
+  <div class="project-title"><label for="processTitle">ПРОЦЕСС</label><input id="processTitle" maxlength="100" aria-label="Название процесса" value="Новый бизнес-процесс"></div>
+  <div class="top-actions"><span class="saved" id="saveStatus">● Локально сохранено</span><button id="openBtn" class="btn subtle" title="Импорт JSON">↥ Открыть</button><button id="saveJsonBtn" class="btn subtle">⇩ JSON</button><button id="saveXmlBtn" class="btn primary">Экспорт BPMN ↗</button></div>
+</header>
+<div class="workspace">
+  <aside class="side left-side"><div class="eyebrow">ИНСТРУМЕНТЫ</div><h2>Палитра элементов</h2><p class="muted">Выберите элемент и щёлкните по рабочему полю, чтобы разместить его.</p>
+    <button class="palette active" data-tool="select"><span class="palette-icon pointer">↖</span><span><b>Выделение</b><small>Перемещение и свойства</small></span><kbd>V</kbd></button>
+    <div class="section-label">ОБЪЕКТЫ BPMN</div>
+    <button class="palette" data-tool="startEvent"><span class="palette-icon start"><i></i></span><span><b>Начальное событие</b><small>Запуск процесса</small></span><kbd>1</kbd></button>
+    <button class="palette" data-tool="task"><span class="palette-icon task"><i></i></span><span><b>Задача</b><small>Действие или операция</small></span><kbd>2</kbd></button>
+    <button class="palette" data-tool="exclusiveGateway"><span class="palette-icon gateway"><i></i></span><span><b>Шлюз XOR</b><small>Разветвление процесса</small></span><kbd>3</kbd></button>
+    <button class="palette" data-tool="endEvent"><span class="palette-icon end"><i></i></span><span><b>Конечное событие</b><small>Завершение процесса</small></span><kbd>4</kbd></button>
+    <div class="section-label">СВЯЗИ</div><button class="palette" data-tool="connect"><span class="palette-icon connect">↗</span><span><b>Поток управления</b><small>Выберите два элемента</small></span><kbd>C</kbd></button>
+    <div class="sidebar-note"><b>Подсказка</b><p>Перетаскивайте блоки мышью. Чтобы изменить название, выделите блок и используйте панель справа.</p></div>
+  </aside>
+  <main class="center"><div class="ribbon"><div class="ribbon-left"><span class="ribbon-label">РЕДАКТОР ДИАГРАММЫ</span><span class="separator"></span><button id="undoBtn" title="Отменить (Ctrl+Z)">↶</button><button id="redoBtn" title="Повторить (Ctrl+Y)">↷</button><span class="separator"></span><button id="deleteBtn" title="Удалить выделенный элемент (Delete)">⌫ Удалить</button></div><div class="ribbon-right"><button id="demoBtn">Пример процесса</button><button id="clearBtn">Очистить</button></div></div>
+  <div class="canvas-shell" id="canvasShell"><svg id="diagram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 620" aria-label="Рабочая область BPMN диаграммы" role="img"><defs><pattern id="minorGrid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#e7ebf1" stroke-width="1"/></pattern><marker id="arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#4b627d"/></marker></defs><rect width="1120" height="620" fill="url(#minorGrid)"/><g id="edges"></g><g id="nodes"></g></svg>
+  <div class="empty-state" id="emptyState"><div class="empty-icon">◇</div><h2>Здесь начинается ваш процесс</h2><p>Добавьте начальное событие из палитры слева<br>или откройте готовый пример.</p><button id="emptyDemoBtn" class="btn primary">Открыть пример →</button></div>
+  <div class="canvas-bottom"><div id="hint" class="hint">Инструмент: выделение. Перетащите элемент или щёлкните по нему.</div><div class="zoom"><button id="zoomOut">−</button><span id="zoomValue">100%</span><button id="zoomIn">+</button><button id="zoomFit">⤢</button></div></div>
+  </div>
+  <footer class="footer"><span>● <b id="nodeCount">0</b> элементов</span><span>↗ <b id="flowCount">0</b> потоков</span><span class="right">BPMN 2.0 · SVG · Без сервера</span></footer></main>
+  <aside class="side right-side"><div class="eyebrow">ИНСПЕКТОР</div><h2>Свойства</h2><div id="noSelection"><div class="property-placeholder">◌</div><p class="muted">Выделите объект на диаграмме, чтобы изменить его параметры.</p></div><div id="properties" hidden><div class="field"><label>ТИП</label><div id="selectedType" class="readonly"></div></div><div class="field"><label for="nodeName">НАЗВАНИЕ</label><textarea id="nodeName" rows="3" maxlength="160"></textarea></div><div class="field"><label>ID ЭЛЕМЕНТА</label><div id="nodeId" class="readonly mono"></div></div><div class="field"><label>КООРДИНАТЫ</label><div id="nodePosition" class="readonly mono"></div></div><div class="info-box">Название попадёт в экспортируемую BPMN XML-модель.</div></div>
+  <div class="right-bottom"><div class="section-label">О ПРОЕКТЕ</div><p>Базовые объекты: события, задачи, исключающие шлюзы и потоки управления.</p><p class="muted">Данные сохраняются в браузере автоматически. Экспорт доступен в JSON и BPMN XML.</p></div></aside>
+</div>
+<input type="file" id="fileInput" accept=".json,application/json" hidden>
+<div id="toast" role="status" aria-live="polite"></div>
+<script type="module" src="src/app.js"></script></body></html>
