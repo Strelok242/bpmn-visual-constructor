@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "title": "Обработка заявки клиента",
+  "nodes": [
+    {
+      "id": "Start_1",
+      "type": "startEvent",
+      "x": 100,
+      "y": 245,
+      "name": "Запрос"
+    },
+    {
+      "id": "Task_1",
+      "type": "task",
+      "x": 300,
+      "y": 245,
+      "name": "Получить заявку"
+    },
+    {
+      "id": "Gateway_1",
+      "type": "exclusiveGateway",
+      "x": 510,
+      "y": 245,
+      "name": "Данные полные?"
+    },
+    {
+      "id": "Task_2",
+      "type": "task",
+      "x": 735,
+      "y": 130,
+      "name": "Подготовить предложение"
+    },
+    {
+      "id": "Task_3",
+      "type": "task",
+      "x": 735,
+      "y": 355,
+      "name": "Запросить уточнения"
+    },
+    {
+      "id": "End_1",
+      "type": "endEvent",
+      "x": 965,
+      "y": 130,
+      "name": "Завершено"
+    },
+    {
+      "id": "End_2",
+      "type": "endEvent",
+      "x": 965,
+      "y": 355,
+      "name": "Ожидание"
+    }
+  ],
+  "flows": [
+    {
+      "id": "Flow_1",
+      "source": "Start_1",
+      "target": "Task_1"
+    },
+    {
+      "id": "Flow_2",
+      "source": "Task_1",
+      "target": "Gateway_1"
+    },
+    {
+      "id": "Flow_3",
+      "source": "Gateway_1",
+      "target": "Task_2"
+    },
+    {
+      "id": "Flow_4",
+      "source": "Gateway_1",
+      "target": "Task_3"
+    },
+    {
+      "id": "Flow_5",
+      "source": "Task_2",
+      "target": "End_1"
+    },
+    {
+      "id": "Flow_6",
+      "source": "Task_3",
+      "target": "End_2"
+    }
+  ]
+}
