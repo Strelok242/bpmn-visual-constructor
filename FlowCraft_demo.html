@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FlowCraft | BPMN-конструктор</title><style>@import url('data:text/css,');
+:root{font-family:Inter,Arial,'Helvetica Neue',sans-serif;color:#263348;background:#f2f5f9;font-size:14px}*{box-sizing:border-box}body{margin:0}.app{min-height:100vh;display:flex;flex-direction:column}.topbar{height:78px;background:#101c2e;color:#fff;display:flex;align-items:center;padding:0 27px;gap:30px;border-bottom:1px solid #22364d}.identity{display:flex;gap:11px;align-items:center;min-width:245px}.identity .mark{width:43px;height:43px;border-radius:13px;background:#4a86f4;color:white;display:grid;place-items:center;font-size:31px;box-shadow:0 6px 20px #125dd54a}.identity strong{display:block;font-size:20px;letter-spacing:-.6px}.identity small{font-size:11px;display:block;color:#97abc4;margin-top:3px}.project-title{border-left:1px solid #344055;padding-left:23px;display:flex;flex-direction:column;gap:6px;min-width:160px;flex:1}.project-title label,.eyebrow,.field label,.section-label,.ribbon-label{font-size:10px;letter-spacing:1.2px;font-weight:800}.project-title label{color:#8297b4}.project-title input{border:0;outline:none;color:#fff;font:600 16px Inter,Arial;background:transparent;width:100%;max-width:420px}.top-actions{display:flex;align-items:center;gap:9px}.saved{color:#88beac;font-size:12px;margin-right:13px;white-space:nowrap}.btn{border:1px solid #d6dfec;background:white;color:#29364b;border-radius:9px;padding:12px 16px;font-size:12px;font-weight:700;cursor:pointer}.btn.primary{background:#377df0;border-color:#377df0;color:#fff}.btn.primary:hover{background:#1769ef}.btn.subtle{background:#1b2b43;color:#e0e9f5;border-color:#34465d}.btn:hover{filter:brightness(.97)}.workspace{display:grid;grid-template-columns:270px minmax(450px,1fr) 265px;flex:1;min-height:0}.side{background:white;padding:30px 20px;position:relative}.left-side{border-right:1px solid #e4eaf2}.right-side{border-left:1px solid #e4eaf2}.eyebrow{color:#4784ed;margin-bottom:6px}.side h2{font-size:18px;margin:0 0 12px;letter-spacing:-.3px}.muted{color:#8b96a7;font-size:12px;line-height:1.65;margin:0 0 24px}.palette{display:flex;align-items:center;gap:12px;width:100%;background:transparent;text-align:left;border:1px solid transparent;padding:11px 10px;border-radius:9px;margin:3px 0;cursor:pointer;color:#2d4057}.palette:hover{background:#f3f7ff}.palette.active{background:#eaf2ff;border-color:#c6dbfe}.palette span:nth-child(2){flex:1}.palette b{display:block;font-size:12px;font-weight:700}.palette small{display:block;font-size:10px;color:#8996a8;margin-top:4px}.palette kbd{font:11px Inter,Arial;color:#a8b1be}.palette-icon{width:38px;height:38px;display:grid;place-items:center;background:#f5f7fa;border:1px solid #e6ebf1;border-radius:8px;flex-shrink:0;font-size:21px;color:#3b5069}.palette.active .palette-icon{background:#fff;border-color:#c5d5ed}.palette-icon.start i{width:21px;height:21px;border:2.5px solid #2ea77b;border-radius:50%}.palette-icon.task i{width:26px;height:18px;border:2px solid #3c8dff;border-radius:4px}.palette-icon.gateway i{width:18px;height:18px;border:2px solid #d69c21;transform:rotate(45deg)}.palette-icon.end i{width:21px;height:21px;border:4px solid #e77780;border-radius:50%}.section-label{color:#9aa6b8;margin:25px 0 12px}.sidebar-note{background:#f5f8fd;border-left:3px solid #7fa8f7;padding:15px 14px;margin-top:24px;border-radius:5px;color:#465974}.sidebar-note b{font-size:12px}.sidebar-note p{margin:7px 0 0;font-size:11px;line-height:1.7}.center{min-width:0;display:flex;flex-direction:column}.ribbon{height:57px;display:flex;justify-content:space-between;align-items:center;padding:0 22px;background:#fff;border-bottom:1px solid #e4eaf2}.ribbon-left,.ribbon-right{display:flex;align-items:center;gap:11px}.ribbon-label{color:#8995a7;white-space:nowrap}.separator{width:1px;height:21px;background:#e2e7ee;margin:0 3px}.ribbon button{border:0;background:transparent;color:#627288;padding:7px 8px;font-size:13px;border-radius:6px;cursor:pointer}.ribbon button:hover{background:#eef3fb;color:#285ec6}.canvas-shell{background:#f8fafc;position:relative;flex:1;min-height:540px;overflow:hidden}#diagram{width:100%;height:100%;position:absolute;inset:0;cursor:crosshair;touch-action:none}#diagram .node{cursor:move}#diagram .node text{font:600 14px Inter,Arial;fill:#2b3f57;pointer-events:none;user-select:none}#diagram .node.selected .element-shape{stroke:#2c73ea;stroke-width:3;filter:drop-shadow(0px 3px 6px #6ba0ec66)}#diagram .edge{cursor:pointer;pointer-events:stroke}#diagram .edge.selected{stroke:#377dfa;stroke-width:3}.empty-state{pointer-events:none;position:absolute;left:50%;top:47%;transform:translate(-50%,-50%);text-align:center;color:#4c617d}.empty-state button{pointer-events:auto}.empty-icon{width:74px;height:74px;margin:0 auto 20px;border:1px dashed #b4c7df;border-radius:18px;color:#80a0ca;font-size:44px;display:grid;place-items:center}.empty-state h2{font-size:19px;margin:0 0 12px}.empty-state p{font-size:12px;color:#93a2b6;line-height:1.8;margin:0 0 18px}.canvas-bottom{position:absolute;bottom:20px;left:20px;right:20px;display:flex;justify-content:space-between;align-items:center;gap:15px;pointer-events:none}.hint{background:#ffffffdc;border:1px solid #e1e8ef;border-radius:8px;padding:12px 16px;color:#8391a4;font-size:11px;max-width:550px}.zoom{pointer-events:auto;display:flex;align-items:center;background:white;box-shadow:0 2px 13px #102d451c;border:1px solid #e3e8ef;border-radius:9px;padding:5px;gap:9px;color:#6a7a91;font-size:12px}.zoom button{border:0;background:white;cursor:pointer;width:28px;height:28px;border-radius:6px;font-size:17px;color:#5b6d87}.zoom button:hover{background:#ecf3ff}.zoom span{min-width:42px;text-align:center}.footer{height:34px;background:white;border-top:1px solid #e4eaf2;display:flex;align-items:center;gap:21px;padding:0 21px;color:#8d99aa;font-size:11px}.footer b{font-weight:700;color:#5e718a}.footer .right{margin-left:auto}.property-placeholder{height:92px;display:grid;place-items:center;color:#c2ccdc;font-size:55px;margin-top:35px}#noSelection p{text-align:center;padding:0 10px}.field{display:flex;flex-direction:column;gap:8px;margin-top:23px}.field label{color:#8e9bad}.readonly,textarea{background:#f6f8fb;color:#536783;padding:11px;border:1px solid #e5eaf0;border-radius:8px;font-size:12px}.mono{font-family:Consolas,monospace;overflow-wrap:anywhere}textarea{resize:vertical;background:#fff;font:13px Inter,Arial;line-height:1.5;outline:none}textarea:focus{border-color:#598ef3}.info-box{margin-top:21px;background:#eff5ff;color:#6280ac;font-size:11px;border-radius:8px;padding:13px;line-height:1.5}.right-bottom{position:absolute;bottom:20px;left:20px;right:20px}.right-bottom p{font-size:12px;line-height:1.6;color:#5b6981}.right-bottom p.muted{color:#9ca7b6;font-size:11px}.right-bottom .section-label{margin:0 0 9px}#toast{position:fixed;bottom:45px;left:50%;transform:translateX(-50%);background:#182b40;color:white;padding:12px 20px;border-radius:10px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:20;font-size:12px;max-width:480px}#toast.show{opacity:1}@media(max-width:1190px){.workspace{grid-template-columns:225px minmax(360px,1fr) 225px}.side{padding:26px 12px}.topbar{gap:12px}.identity{min-width:175px}.saved{display:none}.ribbon-label{display:none}}@media(max-width:840px){.workspace{grid-template-columns:170px minmax(320px,1fr)}.right-side{display:none}.palette small{display:none}.side h2{font-size:15px}.topbar{padding:8px 12px;height:auto;min-height:72px}.identity{min-width:143px}.identity small{display:none}.project-title{min-width:110px}.top-actions .subtle{display:none}}@media(max-width:570px){.workspace{grid-template-columns:1fr}.left-side{display:flex;align-items:center;gap:4px;padding:7px;overflow-x:auto}.left-side h2,.left-side>.muted,.left-side .section-label,.left-side .sidebar-note,.left-side .eyebrow{display:none}.palette{width:44px;min-width:44px;padding:4px}.palette span:nth-child(2),.palette kbd{display:none}.identity{min-width:50px}.identity strong{display:none}.project-title input{font-size:13px}.top-actions{gap:4px}.top-actions .btn{padding:9px 7px;font-size:10px}.canvas-shell{min-height:calc(100vh - 230px)}.ribbon{padding:0 5px}.ribbon-right button{font-size:11px}}
+</style></head>
+<body>
+<div class="app">
+<header class="topbar">
+  <div class="identity"><span class="mark">◇</span><div><strong>FlowCraft</strong><small>BPMN Studio · Учебный проект</small></div></div>
+  <div class="project-title"><label for="processTitle">ПРОЦЕСС</label><input id="processTitle" maxlength="100" aria-label="Название процесса" value="Новый бизнес-процесс"></div>
+  <div class="top-actions"><span class="saved" id="saveStatus">● Локально сохранено</span><button id="openBtn" class="btn subtle" title="Импорт JSON">↥ Открыть</button><button id="saveJsonBtn" class="btn subtle">⇩ JSON</button><button id="saveXmlBtn" class="btn primary">Экспорт BPMN ↗</button></div>
+</header>
+<div class="workspace">
+  <aside class="side left-side"><div class="eyebrow">ИНСТРУМЕНТЫ</div><h2>Палитра элементов</h2><p class="muted">Выберите элемент и щёлкните по рабочему полю, чтобы разместить его.</p>
+    <button class="palette active" data-tool="select"><span class="palette-icon pointer">↖</span><span><b>Выделение</b><small>Перемещение и свойства</small></span><kbd>V</kbd></button>
+    <div class="section-label">ОБЪЕКТЫ BPMN</div>
+    <button class="palette" data-tool="startEvent"><span class="palette-icon start"><i></i></span><span><b>Начальное событие</b><small>Запуск процесса</small></span><kbd>1</kbd></button>
+    <button class="palette" data-tool="task"><span class="palette-icon task"><i></i></span><span><b>Задача</b><small>Действие или операция</small></span><kbd>2</kbd></button>
+    <button class="palette" data-tool="exclusiveGateway"><span class="palette-icon gateway"><i></i></span><span><b>Шлюз XOR</b><small>Разветвление процесса</small></span><kbd>3</kbd></button>
+    <button class="palette" data-tool="endEvent"><span class="palette-icon end"><i></i></span><span><b>Конечное событие</b><small>Завершение процесса</small></span><kbd>4</kbd></button>
+    <div class="section-label">СВЯЗИ</div><button class="palette" data-tool="connect"><span class="palette-icon connect">↗</span><span><b>Поток управления</b><small>Выберите два элемента</small></span><kbd>C</kbd></button>
+    <div class="sidebar-note"><b>Подсказка</b><p>Перетаскивайте блоки мышью. Чтобы изменить название, выделите блок и используйте панель справа.</p></div>
+  </aside>
+  <main class="center"><div class="ribbon"><div class="ribbon-left"><span class="ribbon-label">РЕДАКТОР ДИАГРАММЫ</span><span class="separator"></span><button id="undoBtn" title="Отменить (Ctrl+Z)">↶</button><button id="redoBtn" title="Повторить (Ctrl+Y)">↷</button><span class="separator"></span><button id="deleteBtn" title="Удалить выделенный элемент (Delete)">⌫ Удалить</button></div><div class="ribbon-right"><button id="demoBtn">Пример процесса</button><button id="clearBtn">Очистить</button></div></div>
+  <div class="canvas-shell" id="canvasShell"><svg id="diagram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 620" aria-label="Рабочая область BPMN диаграммы" role="img"><defs><pattern id="minorGrid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#e7ebf1" stroke-width="1"/></pattern><marker id="arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#4b627d"/></marker></defs><rect width="1120" height="620" fill="url(#minorGrid)"/><g id="edges"></g><g id="nodes"></g></svg>
+  <div class="empty-state" id="emptyState"><div class="empty-icon">◇</div><h2>Здесь начинается ваш процесс</h2><p>Добавьте начальное событие из палитры слева<br>или откройте готовый пример.</p><button id="emptyDemoBtn" class="btn primary">Открыть пример →</button></div>
+  <div class="canvas-bottom"><div id="hint" class="hint">Инструмент: выделение. Перетащите элемент или щёлкните по нему.</div><div class="zoom"><button id="zoomOut">−</button><span id="zoomValue">100%</span><button id="zoomIn">+</button><button id="zoomFit">⤢</button></div></div>
+  </div>
+  <footer class="footer"><span>● <b id="nodeCount">0</b> элементов</span><span>↗ <b id="flowCount">0</b> потоков</span><span class="right">BPMN 2.0 · SVG · Без сервера</span></footer></main>
+  <aside class="side right-side"><div class="eyebrow">ИНСПЕКТОР</div><h2>Свойства</h2><div id="noSelection"><div class="property-placeholder">◌</div><p class="muted">Выделите объект на диаграмме, чтобы изменить его параметры.</p></div><div id="properties" hidden><div class="field"><label>ТИП</label><div id="selectedType" class="readonly"></div></div><div class="field"><label for="nodeName">НАЗВАНИЕ</label><textarea id="nodeName" rows="3" maxlength="160"></textarea></div><div class="field"><label>ID ЭЛЕМЕНТА</label><div id="nodeId" class="readonly mono"></div></div><div class="field"><label>КООРДИНАТЫ</label><div id="nodePosition" class="readonly mono"></div></div><div class="info-box">Название попадёт в экспортируемую BPMN XML-модель.</div></div>
+  <div class="right-bottom"><div class="section-label">О ПРОЕКТЕ</div><p>Базовые объекты: события, задачи, исключающие шлюзы и потоки управления.</p><p class="muted">Данные сохраняются в браузере автоматически. Экспорт доступен в JSON и BPMN XML.</p></div></aside>
+</div>
+<input type="file" id="fileInput" accept=".json,application/json" hidden>
+<div id="toast" role="status" aria-live="polite"></div>
+<script>/** Pure BPMN project model. No framework or external dependencies. */
+const TYPES = Object.freeze(['startEvent', 'task', 'exclusiveGateway', 'endEvent']);
+const LABELS = Object.freeze({
+  startEvent: 'Начало', task: 'Задача', exclusiveGateway: 'Условие', endEvent: 'Завершение'
+});
+const PREFIX = {startEvent: 'Start', task: 'Task', exclusiveGateway: 'Gateway', endEvent: 'End'};
+const EMPTY = () => ({version: 1, title: 'Новый бизнес-процесс', nodes: [], flows: []});
+const uid = (prefix = 'id') => `${prefix}_${Math.random().toString(36).slice(2, 10)}`;
+const dimensions = type => type === 'task' ? {w: 152, h: 76} : type === 'exclusiveGateway' ? {w: 66, h: 66} : {w: 56, h: 56};
+function createNode(type, x, y, name = LABELS[type]) {
+  if (!TYPES.includes(type)) throw new Error('Недопустимый тип BPMN');
+  return {id: uid(PREFIX[type]), type, x: Number(x), y: Number(y), name: String(name)};
+}
+function createFlow(sourceId, targetId, model) {
+  if (sourceId === targetId) throw new Error('Нельзя соединить элемент с самим собой');
+  const source = model.nodes.find(x => x.id === sourceId);
+  const target = model.nodes.find(x => x.id === targetId);
+  if (!source || !target) throw new Error('Элемент не найден');
+  if (source.type === 'endEvent') throw new Error('Событие завершения не может иметь исходящий поток');
+  if (target.type === 'startEvent') throw new Error('Стартовое событие не может иметь входящий поток');
+  if (model.flows.some(x => x.source === sourceId && x.target === targetId)) throw new Error('Связь уже существует');
+  return {id: uid('Flow'), source: sourceId, target: targetId};
+}
+function getBounds(node) { const {w, h} = dimensions(node.type); return {x: node.x - w/2, y: node.y - h/2, width: w, height: h}; }
+function getWaypoints(from, to) {
+  const dx=to.x-from.x, dy=to.y-from.y;
+  const edge = n => {
+    const {w,h}=dimensions(n.type);
+    if (n.type !== 'task') {
+      const rr = n.type === 'exclusiveGateway' ? 33/(Math.abs(dx)/Math.hypot(dx,dy)+Math.abs(dy)/Math.hypot(dx,dy) || 1) : 28;
+      return rr;
+    }
+    return 0;
+  };
+  const dist = Math.hypot(dx,dy) || 1;
+  function point(n,sign) {
+    const vx=dx/dist*sign, vy=dy/dist*sign;
+    const {w,h}=dimensions(n.type);
+    let t;
+    if (n.type === 'task') t=Math.min(Math.abs(vx)>1e-6 ? (w/2)/Math.abs(vx) : 1e9, Math.abs(vy)>1e-6 ? (h/2)/Math.abs(vy) : 1e9);
+    else if(n.type === 'exclusiveGateway') t=(w/2)/(Math.abs(vx)+Math.abs(vy) || 1);
+    else t=w/2;
+    return {x:Math.round((n.x+vx*t)*10)/10,y:Math.round((n.y+vy*t)*10)/10};
+  }
+  return [point(from,1),point(to,-1)];
+}
+function validateModel(data) {
+  if (!data || typeof data !== 'object' || !Array.isArray(data.nodes) || !Array.isArray(data.flows)) throw new Error('Некорректный файл проекта');
+  if (data.nodes.length > 200 || data.flows.length > 500) throw new Error('Превышен учебный лимит модели');
+  const ids=new Set();
+  for (const n of data.nodes) {
+    if (!n || !TYPES.includes(n.type) || typeof n.id!=='string' || !/^[A-Za-z][\w-]{0,80}$/.test(n.id) || ids.has(n.id) || !Number.isFinite(n.x) || !Number.isFinite(n.y) || Math.abs(n.x)>100000 || Math.abs(n.y)>100000 || typeof n.name!=='string' || n.name.length>160) throw new Error('Недопустимый элемент диаграммы');
+    ids.add(n.id);
+  }
+  const pairs=new Set();
+  for(const f of data.flows) {
+    if(!f || !/^[A-Za-z][\w-]{0,80}$/.test(f.id ?? '') || ids.has(f.id) || !ids.has(f.source) || !ids.has(f.target) || f.source===f.target) throw new Error('Некорректный поток управления');
+    const src=data.nodes.find(n=>n.id===f.source), dst=data.nodes.find(n=>n.id===f.target);
+    if(src.type==='endEvent' || dst.type==='startEvent') throw new Error('Поток нарушает ограничения событий');
+    const p=`${f.source}:${f.target}`;
+    if(pairs.has(p)) throw new Error('Дублирование потока');
+    pairs.add(p); ids.add(f.id);
+  }
+  return {version:1,title:String(data.title || 'Бизнес-процесс').slice(0,100),nodes:data.nodes.map(x=>({...x})),flows:data.flows.map(x=>({...x}))};
+}
+function createDemo() {
+  const p=EMPTY();p.title='Обработка заявки клиента';
+  p.nodes=[
+    {id:'Start_1',type:'startEvent',x:100,y:245,name:'Запрос'},
+    {id:'Task_1',type:'task',x:300,y:245,name:'Получить заявку'},
+    {id:'Gateway_1',type:'exclusiveGateway',x:510,y:245,name:'Данные полные?'},
+    {id:'Task_2',type:'task',x:735,y:130,name:'Подготовить предложение'},
+    {id:'Task_3',type:'task',x:735,y:355,name:'Запросить уточнения'},
+    {id:'End_1',type:'endEvent',x:965,y:130,name:'Завершено'},
+    {id:'End_2',type:'endEvent',x:965,y:355,name:'Ожидание'}
+  ];
+  p.flows=[['Start_1','Task_1'],['Task_1','Gateway_1'],['Gateway_1','Task_2'],['Gateway_1','Task_3'],['Task_2','End_1'],['Task_3','End_2']].map(([source,target],i)=>({id:`Flow_${i+1}`,source,target}));
+  return p;
+}
+
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&apos;');
+function exportBpmnXML(raw) {
+  const m = validateModel(raw);
+  const lines = [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1" targetNamespace="https://example.org/bpmn-studio">',
+    `  <bpmn:process id="Process_1" name="${esc(m.title)}" isExecutable="false">`
+  ];
+  for(const n of m.nodes){
+    const incoming=m.flows.filter(f=>f.target===n.id).map(f=>`      <bpmn:incoming>${esc(f.id)}</bpmn:incoming>`);
+    const outgoing=m.flows.filter(f=>f.source===n.id).map(f=>`      <bpmn:outgoing>${esc(f.id)}</bpmn:outgoing>`);
+    lines.push(`    <bpmn:${n.type} id="${esc(n.id)}" name="${esc(n.name)}">`,...incoming,...outgoing,`    </bpmn:${n.type}>`);
+  }
+  for(const f of m.flows) lines.push(`    <bpmn:sequenceFlow id="${esc(f.id)}" sourceRef="${esc(f.source)}" targetRef="${esc(f.target)}" />`);
+  lines.push('  </bpmn:process>', '  <bpmndi:BPMNDiagram id="BPMNDiagram_1">', '    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1">');
+  for(const n of m.nodes){
+    const b=getBounds(n);
+    lines.push(`      <bpmndi:BPMNShape id="${esc(n.id)}_di" bpmnElement="${esc(n.id)}">`);
+    lines.push(`        <dc:Bounds x="${b.x}" y="${b.y}" width="${b.width}" height="${b.height}" />`);
+    lines.push('      </bpmndi:BPMNShape>');
+  }
+  for(const f of m.flows){
+    const from=m.nodes.find(n=>n.id===f.source),to=m.nodes.find(n=>n.id===f.target);
+    lines.push(`      <bpmndi:BPMNEdge id="${esc(f.id)}_di" bpmnElement="${esc(f.id)}">`);
+    for (const pt of getWaypoints(from,to)) lines.push(`        <di:waypoint x="${pt.x}" y="${pt.y}" />`);
+    lines.push('      </bpmndi:BPMNEdge>');
+  }
+  lines.push('    </bpmndi:BPMNPlane>', '  </bpmndi:BPMNDiagram>', '</bpmn:definitions>');
+  return lines.join('\n');
+}
+
+const S='http://www.w3.org/2000/svg', $=id=>document.getElementById(id);
+let model=EMPTY(), tool='select', selection=null, firstNode=null, dragging=null;
+let undoStack=[],redoStack=[],zoom=1,toastTimer=null;
+const STORAGE_KEY='flowcraft.bpmn.v1';
+try {const saved=localStorage.getItem(STORAGE_KEY);if(saved) model=validateModel(JSON.parse(saved));}catch(e){console.warn('Сохранение не загружено',e);}
+function svgEl(tag,attrs={},text=null){const e=document.createElementNS(S,tag);for(const [k,v] of Object.entries(attrs)) e.setAttribute(k,String(v));if(text!==null)e.textContent=text;return e;}
+function snapshot(){undoStack.push(JSON.stringify(model));if(undoStack.length>60) undoStack.shift();redoStack=[];}
+function updateStorage(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(model));$('saveStatus').textContent='● Локально сохранено';}catch(e){$('saveStatus').textContent='● Не удалось сохранить';}}
+function toast(text){const el=$('toast');el.textContent=text;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),2500);}
+function render(){
+ $('processTitle').value=model.title;
+ $('nodeCount').textContent=model.nodes.length;$('flowCount').textContent=model.flows.length;
+ $('emptyState').style.display=model.nodes.length?'none':'block';
+ const nodes=$('nodes'),edges=$('edges');nodes.replaceChildren();edges.replaceChildren();
+ for(const f of model.flows){const a=model.nodes.find(n=>n.id===f.source),b=model.nodes.find(n=>n.id===f.target);if(!a||!b)continue;
+   const [p,q]=getWaypoints(a,b);
+   const path=svgEl('path',{d:`M${p.x},${p.y} L${q.x},${q.y}`,fill:'none',stroke:'#4b627d','stroke-width':selection?.kind==='flow'&&selection.id===f.id?3:2.2,'marker-end':'url(#arrowhead)',class:`edge ${selection?.kind==='flow'&&selection.id===f.id?'selected':''}`,'data-flow-id':f.id});
+   const hit=svgEl('path',{d:`M${p.x},${p.y} L${q.x},${q.y}`,fill:'none',stroke:'transparent','stroke-width':15,'data-flow-id':f.id,style:'cursor:pointer'});
+   edges.append(path,hit);
+ }
+ for(const n of model.nodes){const {x,y,width,height}=getBounds(n);
+   const g=svgEl('g',{class:`node ${selection?.kind==='node'&&selection.id===n.id?'selected':''}`,'data-node-id':n.id});
+   if(n.type==='task')g.append(svgEl('rect',{x,y,width,height,rx:11,ry:11,fill:'#fff',stroke:'#3c8dff','stroke-width':2,class:'element-shape'}));
+   if(n.type==='startEvent')g.append(svgEl('circle',{cx:n.x,cy:n.y,r:27,fill:'#e6faf2',stroke:'#2aa679','stroke-width':3,class:'element-shape'}));
+   if(n.type==='endEvent')g.append(svgEl('circle',{cx:n.x,cy:n.y,r:26,fill:'#fff0f0',stroke:'#e27075','stroke-width':5,class:'element-shape'}));
+   if(n.type==='exclusiveGateway'){
+     g.append(svgEl('polygon',{points:`${n.x},${y} ${x+width},${n.y} ${n.x},${y+height} ${x},${n.y}`,fill:'#fff9e8',stroke:'#d39c29','stroke-width':2,class:'element-shape'}));
+     g.append(svgEl('path',{d:`M${n.x-10},${n.y-10}L${n.x+10},${n.y+10}M${n.x+10},${n.y-10}L${n.x-10},${n.y+10}`,stroke:'#a87517','stroke-width':3,'stroke-linecap':'round'}));
+   }
+   if(n.type==='task'){
+     const chunks=splitText(n.name,15,3);const t=svgEl('text',{'text-anchor':'middle'});const top=n.y-(chunks.length-1)*8;
+     for(const [i,line]of chunks.entries())t.append(svgEl('tspan',{x:n.x,y:top+i*18},line));g.append(t);
+   }else{
+     const t=svgEl('text',{'text-anchor':'middle',x:n.x,y:y+height+20,'font-size':12},n.name.length>22?n.name.slice(0,20)+'…':n.name);g.append(t);
+   }
+   nodes.append(g);
+ }
+ updateProperties();updateStorage();
+}
+function splitText(text,max=18,limit=3){const words=String(text).split(/\s+/),lines=[];let cur='';for(const word of words){if(cur && (cur+' '+word).length>max){lines.push(cur);cur=word;}else cur=(cur?cur+' ':'')+word;}if(cur)lines.push(cur);if(!lines.length)return [''];if(lines.length>limit){lines.splice(limit-1,lines.length-limit+1,lines.slice(limit-1).join(' ').slice(0,max-1)+'…');}return lines;}
+function updateProperties(){const selected=selection?.kind==='node'?model.nodes.find(n=>n.id===selection.id):null;$('properties').hidden=!selected;$('noSelection').hidden=!!selected;if(selected){$('selectedType').textContent=LABELS[selected.type];$('nodeName').value=selected.name;$('nodeId').textContent=selected.id;$('nodePosition').textContent=`x: ${Math.round(selected.x)} · y: ${Math.round(selected.y)}`;}}
+function setTool(t){tool=t;firstNode=null;document.querySelectorAll('.palette').forEach(x=>x.classList.toggle('active',x.dataset.tool===t));const desc={select:'Выделение: щёлкните по элементу или перетащите его.',connect:'Связь: последовательно выберите исходный и целевой элементы.',startEvent:'Щёлкните по схеме, чтобы добавить начальное событие.',task:'Щёлкните по схеме, чтобы добавить задачу.',exclusiveGateway:'Щёлкните по схеме, чтобы добавить шлюз XOR.',endEvent:'Щёлкните по схеме, чтобы добавить конечное событие.'};$('hint').textContent=desc[t];}
+function select(kind,id){selection=id?{kind,id}:null;render();}
+function svgPos(event){const svg=$('diagram');const p=svg.createSVGPoint();p.x=event.clientX;p.y=event.clientY;return p.matrixTransform(svg.getScreenCTM().inverse());}
+function deleteSelected(){if(!selection){toast('Сначала выделите элемент');return;}snapshot();if(selection.kind==='node'){model.nodes=model.nodes.filter(n=>n.id!==selection.id);model.flows=model.flows.filter(f=>f.source!==selection.id&&f.target!==selection.id);}else model.flows=model.flows.filter(f=>f.id!==selection.id);selection=null;render();}
+function loadDemo(){snapshot();model=createDemo();selection=null;setTool('select');render();toast('Загружен пример бизнес-процесса');}
+function undo(){if(!undoStack.length)return;redoStack.push(JSON.stringify(model));model=JSON.parse(undoStack.pop());selection=null;render();}
+function redo(){if(!redoStack.length)return;undoStack.push(JSON.stringify(model));model=JSON.parse(redoStack.pop());selection=null;render();}
+function download(name,data,mime){const a=document.createElement('a');const u=URL.createObjectURL(new Blob([data],{type:mime}));a.href=u;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),2000);}
+function setZoom(next){zoom=Math.max(.65,Math.min(1.8,next));const svg=$('diagram');const w=1120/zoom,h=620/zoom,x=(1120-w)/2,y=(620-h)/2;svg.setAttribute('viewBox',`${x} ${y} ${w} ${h}`);$('zoomValue').textContent=`${Math.round(zoom*100)}%`;}
+$('diagram').addEventListener('pointerdown',e=>{
+ if(e.button!==0)return;
+ const nodeEl=e.target.closest('[data-node-id]'), flowEl=e.target.closest('[data-flow-id]');
+ if(nodeEl){const id=nodeEl.getAttribute('data-node-id');
+   if(tool==='connect'){
+     if(!firstNode){firstNode=id;toast('Теперь выберите целевой элемент');}else{try{snapshot();model.flows.push(createFlow(firstNode,id,model));render();toast('Поток управления создан');}catch(error){undoStack.pop();toast(error.message);}firstNode=null;}return;
+   }
+   if(tool==='select'){select('node',id);const n=model.nodes.find(x=>x.id===id);const p=svgPos(e);dragging={id,startX:n.x,startY:n.y,offsetX:n.x-p.x,offsetY:n.y-p.y,moved:false};$('diagram').setPointerCapture(e.pointerId);return;}
+ }
+ if(flowEl&&tool==='select'){select('flow',flowEl.getAttribute('data-flow-id'));return;}
+ if(TYPES.includes(tool)){
+   const p=svgPos(e);snapshot();const n=createNode(tool,Math.max(40,Math.min(1080,Math.round(p.x))),Math.max(40,Math.min(580,Math.round(p.y))));model.nodes.push(n);selection={kind:'node',id:n.id};render();setTool('select');return;
+ }
+ if(!nodeEl&&!flowEl&&tool==='select')select(null,null);
+});
+$('diagram').addEventListener('pointermove',e=>{
+ if(!dragging)return;
+ const n=model.nodes.find(x=>x.id===dragging.id);if(!n)return;const p=svgPos(e),x=Math.max(35,Math.min(1085,Math.round((p.x+dragging.offsetX)/10)*10)),y=Math.max(35,Math.min(585,Math.round((p.y+dragging.offsetY)/10)*10));
+ if(Math.abs(n.x-x)+Math.abs(n.y-y)<1)return;
+ if(!dragging.moved){snapshot();dragging.moved=true;}n.x=x;n.y=y;render();
+});
+$('diagram').addEventListener('pointerup',e=>{dragging=null;try{$('diagram').releasePointerCapture(e.pointerId);}catch{}});
+$('diagram').addEventListener('pointercancel',()=>dragging=null);
+for(const btn of document.querySelectorAll('.palette'))btn.addEventListener('click',()=>setTool(btn.dataset.tool));
+$('processTitle').addEventListener('change',e=>{snapshot();model.title=e.target.value.trim()||'Бизнес-процесс';render();});
+$('nodeName').addEventListener('change',e=>{const n=model.nodes.find(n=>n.id===selection?.id);if(!n)return;snapshot();n.name=e.target.value.trim()||LABELS[n.type];render();});
+$('demoBtn').addEventListener('click',loadDemo);$('emptyDemoBtn').addEventListener('click',loadDemo);
+$('clearBtn').addEventListener('click',()=>{if(model.nodes.length&&!confirm('Очистить диаграмму?'))return;snapshot();model=EMPTY();selection=null;setTool('select');render();});
+$('deleteBtn').addEventListener('click',deleteSelected);$('undoBtn').addEventListener('click',undo);$('redoBtn').addEventListener('click',redo);
+$('zoomIn').addEventListener('click',()=>setZoom(zoom+.1));$('zoomOut').addEventListener('click',()=>setZoom(zoom-.1));$('zoomFit').addEventListener('click',()=>setZoom(1));
+$('saveJsonBtn').addEventListener('click',()=>download('bpmn-process.json',JSON.stringify(model,null,2),'application/json'));
+$('saveXmlBtn').addEventListener('click',()=>{try{download('bpmn-process.bpmn',exportBpmnXML(model),'application/xml');toast('BPMN XML экспортирован');}catch(e){toast(e.message);}});
+$('openBtn').addEventListener('click',()=>$('fileInput').click());
+$('fileInput').addEventListener('change',async e=>{const file=e.target.files?.[0];if(!file)return;try{const raw=JSON.parse(await file.text());const clean=validateModel(raw);snapshot();model=clean;selection=null;setTool('select');render();toast('Проект импортирован из JSON');}catch(error){toast(`Ошибка импорта: ${error.message}`);}e.target.value='';});
+document.addEventListener('keydown',e=>{
+ if(['INPUT','TEXTAREA'].includes(document.activeElement?.tagName))return;
+ if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){e.preventDefault();undo();return;}
+ if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='y'){e.preventDefault();redo();return;}
+ if(e.key==='Delete'||e.key==='Backspace'){e.preventDefault();if(selection)deleteSelected();return;}
+ const keys={'v':'select','c':'connect','1':'startEvent','2':'task','3':'exclusiveGateway','4':'endEvent'};const t=keys[e.key.toLowerCase()];if(t)setTool(t);
+});
+setZoom(1);render();</script></body></html>
